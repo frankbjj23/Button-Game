@@ -1,0 +1,83 @@
+button {
+  height: 40%;
+  width: 40%;
+  border-radius: 50%;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 100px;
+  font-family: "Georgia", serif;
+  color: yellow;
+  text-shadow: -3px -3px 0 #000, /* Black outline top-left */ 3px -3px 0 #000,
+    /* Black outline top-right */ -3px 3px 0 #000,
+    /* Black outline bottom-left */ 3px 3px 0 #000,
+    /* Black outline bottom-right */ 0 0 10px #ff33ff,
+    /* Pink inner glow */ 0 0 20px #ff33ff;
+  letter-spacing: 5px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Dark background for contrast */
+  background-color: #111;
+  color: #fff; /* White text for contrast against the dark background */
+  text-align: center; /* Center all elements (h1, button, h2, input) */
+}
+
+input {
+  width: 25%;
+  height: 10%;
+}
+
+#scoreBox {
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  border: 4px solid #fff; /* White border for contrast */
+  background-color: #b1a7a7; /* Black inner background */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+#bigButton {
+  /* Set the button's background color to bright red */
+  background-color: #ff0000; /* Bright Red */
+  color: white; /* Make the text white for contrast */
+  border: none; /* Remove the default border */
+
+  /* Retain your circular shape and centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; /* Example size, adjust as needed */
+  width: 300px; /* Example size, adjust as needed */
+  border-radius: 50%;
+  font-size: 20px;
+
+  /* Normal 3D resting state */
+  box-shadow: 0 8px 0 #990000; /* Darker red shadow for depth */
+  transform: translateY(0);
+  transition: all 0.05s ease;
+}
+
+#bigButton:active {
+  /* The PUSHED state */
+  box-shadow: 0 2px 0 #990000;
+  transform: translateY(6px);
+}
+h2 {
+  font-family: "Georgia", serif;
+  font-size: 36px; /* Smaller than the h1 */
+  color: yellow;
+
+  /* Apply a similar neon-like text shadow */
+  text-shadow: -2px -2px 0 #000, 2px 2px 0 #000, 0 0 8px #ff33ff,
+    /* Pink inner glow */ 0 0 16px #ff33ff; /* Pink outer glow */
+
+  letter-spacing: 3px;
+  margin-top: 50px; /* Add space between the button and the score label */
+}
