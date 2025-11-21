@@ -1,83 +1,279 @@
-button {
-  height: 40%;
-  width: 40%;
-  border-radius: 50%;
+:root {
+  --primary-color: #0ff;
+  --secondary-color: #f0f;
+  --accent-color: #ff0;
+  --bg-color: #050505;
+  --text-color: #fff;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --neon-glow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
+  --neon-text: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color);
 }
 
-h1 {
-  display: flex;
-  justify-content: center;
-  font-size: 100px;
-  font-family: "Georgia", serif;
-  color: yellow;
-  text-shadow: -3px -3px 0 #000, /* Black outline top-left */ 3px -3px 0 #000,
-    /* Black outline top-right */ -3px 3px 0 #000,
-    /* Black outline bottom-left */ 3px 3px 0 #000,
-    /* Black outline bottom-right */ 0 0 10px #ff33ff,
-    /* Pink inner glow */ 0 0 20px #ff33ff;
-  letter-spacing: 5px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+  overflow: hidden;
+  background-image:
+    radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%);
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* Header & Stats */
+header {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* Dark background for contrast */
-  background-color: #111;
-  color: #fff; /* White text for contrast against the dark background */
-  text-align: center; /* Center all elements (h1, button, h2, input) */
+  margin-bottom: 20px;
 }
 
-input {
-  width: 25%;
-  height: 10%;
+h1 {
+  font-size: 4rem;
+  color: var(--primary-color);
+  text-shadow: var(--neon-text);
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
-#scoreBox {
-  font-size: 50px;
+.stats-bar {
+  display: flex;
+  gap: 40px;
+  background: var(--glass-bg);
+  padding: 15px 40px;
+  border-radius: 50px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #888;
+  letter-spacing: 2px;
+  margin-bottom: 5px;
+}
+
+#levelValue,
+#rankValue,
+#highScoreValue {
+  font-size: 1.5rem;
   font-weight: bold;
-  text-align: center;
-  border: 4px solid #fff; /* White border for contrast */
-  background-color: #b1a7a7; /* Black inner background */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  color: var(--text-color);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+#rankValue {
+  color: var(--accent-color);
+  text-shadow: 0 0 10px var(--accent-color);
+}
+
+/* Main Game Area */
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.button-wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
 }
 
 #bigButton {
-  /* Set the button's background color to bright red */
-  background-color: #ff0000; /* Bright Red */
-  color: white; /* Make the text white for contrast */
-  border: none; /* Remove the default border */
-
-  /* Retain your circular shape and centering */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px; /* Example size, adjust as needed */
-  width: 300px; /* Example size, adjust as needed */
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  font-size: 20px;
-
-  /* Normal 3D resting state */
-  box-shadow: 0 8px 0 #990000; /* Darker red shadow for depth */
-  transform: translateY(0);
-  transition: all 0.05s ease;
+  border: none;
+  background: radial-gradient(circle at 30% 30%, #ff4d4d, #cc0000);
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow:
+    0 10px 0 #990000,
+    0 0 50px rgba(255, 0, 0, 0.4),
+    inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 10;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 #bigButton:active {
-  /* The PUSHED state */
-  box-shadow: 0 2px 0 #990000;
-  transform: translateY(6px);
+  transform: translateY(10px);
+  box-shadow:
+    0 0 0 #990000,
+    0 0 30px rgba(255, 0, 0, 0.6),
+    inset 0 0 20px rgba(0, 0, 0, 0.5);
 }
-h2 {
-  font-family: "Georgia", serif;
-  font-size: 36px; /* Smaller than the h1 */
-  color: yellow;
 
-  /* Apply a similar neon-like text shadow */
-  text-shadow: -2px -2px 0 #000, 2px 2px 0 #000, 0 0 8px #ff33ff,
-    /* Pink inner glow */ 0 0 16px #ff33ff; /* Pink outer glow */
+.score-container {
+  text-align: center;
+}
 
-  letter-spacing: 3px;
-  margin-top: 50px; /* Add space between the button and the score label */
+.score-container h2 {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+#scoreValue {
+  font-size: 5rem;
+  font-weight: 800;
+  background: linear-gradient(to bottom, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+/* Progress Bar */
+.progress-container {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: #333;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#levelProgress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+  width: 0%;
+  transition: width 0.3s ease-out;
+  box-shadow: 0 0 10px var(--secondary-color);
+}
+
+#nextLevelText {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Rewards Panel */
+.rewards-panel {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--glass-bg);
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+  width: 250px;
+}
+
+.rewards-panel h3 {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.rewards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.reward-item {
+  aspect-ratio: 1;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  cursor: help;
+}
+
+.reward-item.locked {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.reward-item.unlocked {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.2);
+  background: rgba(255, 255, 0, 0.1);
+  animation: unlockPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes unlockPop {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .stats-bar {
+    width: 100%;
+    justify-content: space-around;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .rewards-panel {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  #bigButton {
+    width: 200px;
+    height: 200px;
+  }
 }

@@ -1,16 +1,63 @@
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Button-Game</title>
-    <script src="index.js" defer></script>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <h1>Button Game!</h1>
-    <button id="bigButton">BIG BUTTON</button>
-    <h2>SCORE</h2>
-    <input type="number" id="scoreBox" />
-  </body>
-  <footer></footer>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Button-Game</title>
+  <script src="index.js" defer></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="game-container">
+    <header>
+      <h1>NEON CLICKER</h1>
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="label">LEVEL</span>
+          <span id="levelValue">1</span>
+        </div>
+        <div class="stat-item">
+          <span class="label">RANK</span>
+          <span id="rankValue">Novice</span>
+        </div>
+        <div class="stat-item">
+          <span class="label">HIGH SCORE</span>
+          <span id="highScoreValue">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="button-wrapper">
+        <button id="bigButton">CLICK ME</button>
+        <div id="clickEffects"></div>
+      </div>
+
+      <div class="score-container">
+        <h2>SCORE</h2>
+        <div id="scoreValue">0</div>
+      </div>
+
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div id="levelProgress" style="width: 0%"></div>
+        </div>
+        <p id="nextLevelText">Next Level: 10</p>
+      </div>
+    </main>
+
+    <aside class="rewards-panel">
+      <h3>UNLOCKED REWARDS</h3>
+      <div id="rewardsList" class="rewards-grid">
+        <!-- Rewards will be injected here -->
+        <div class="reward-item locked" title="Reach Level 2">🔒</div>
+        <div class="reward-item locked" title="Reach Level 5">🔒</div>
+        <div class="reward-item locked" title="Reach Level 10">🔒</div>
+      </div>
+    </aside>
+  </div>
+</body>
+<footer></footer>
+
 </html>
